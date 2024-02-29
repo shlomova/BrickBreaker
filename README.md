@@ -18,6 +18,13 @@ Download the project template and open the `BrickBreaker solution`.
 (`Rclick ->`) Set `BrickBreaker_Test` project as a `Startup Project`. Run and see all the wonderful unit test failures
 that pop out in the console. Pretty, hu?
 
+### Practice OpenCV:
+You have the `SnadBox.c` file to learn and practice the most common commands in OpenCV.
+Set the `OpenCV_Playground` project as the `Startup Project`, and now you can run this.
+Look at the code in the file, and play with parameters, etc.
+
+Don't forget to restore the `Startup Project` to `BrickBreaker_Test`.
+
 Step 2: Points
 --------------
 
