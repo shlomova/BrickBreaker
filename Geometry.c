@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include "Geometry.h"
 
+///////////////// Point ///////////////////////
+
 void Point_Print(Point const* p)
 {
 	printf("[P->x=%f, P->y=%f]\n", p->x, p->y);
@@ -10,14 +12,30 @@ void Point_Print(Point const* p)
 // TODO:
 bool Point_Equals(Point const* p1, Point const* p2)
 {
-	return false;
+	return (p1->x == p2->x) && (p1->y == p2->y);
 }
 
 Point Point_Add(Point const* p1, Point const* p2)
 {
-	Point result = { 0, 0 };
+	Point result = { p1->x + p2->x, p1->y + p2->y };
 	return result;
 }
+
+Point Point_MIN(Point const* p1, Point const* p2)
+{
+	// hint: use the MIN macro in Geometry.h
+	Point result = { MIN(p1->x, p2->x), MIN(p1->y, p2->y) };
+	return result;
+}
+
+Point Point_MAX(Point const* p1, Point const* p2)
+{
+	// hint: use the MAX macro in Geometry.h
+	Point result = { MAX(p1->x, p2->x), MAX(p1->y, p2->y) };
+	return result;
+}
+
+///////////////// Rect ///////////////////////
 
 Point Rect_BR(Rect const* r) {
 	Point br = { 0, 0};
@@ -41,19 +59,6 @@ bool Rect_IsValid(Rect const* r)
 	return r->width > 0 && r->height > 0;
 }
 
-Point Point_MIN(Point const* p1, Point const* p2)
-{
-	// hint: use the MIN macro in Geometry.h
-	Point result = { 0, 0};
-	return result;
-}
-
-Point Point_MAX(Point const* p1, Point const* p2)
-{
-	// hint: use the MAX macro in Geometry.h
-	Point result = { 0, 0 };
-	return result;
-}
 
 Rect Rect_GuessWhat(Rect const* r1, Rect const* r2)
 {

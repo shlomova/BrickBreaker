@@ -196,7 +196,7 @@ void ShowingImages_BlockingDelay()
 int main()
 {
 	int example_idx = 0;
-	printf("What example to run (1-7)?\n");
+	printf("What example to run (1-8)?\n");
 	scanf("%d", &example_idx);
 	switch (example_idx)
 	{
