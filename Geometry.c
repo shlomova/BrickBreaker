@@ -9,7 +9,6 @@ void Point_Print(Point const* p)
 	printf("[P->x=%f, P->y=%f]\n", p->x, p->y);
 }
 
-// TODO:
 bool Point_Equals(Point const* p1, Point const* p2)
 {
 	return (p1->x == p2->x) && (p1->y == p2->y);
@@ -36,21 +35,29 @@ Point Point_MAX(Point const* p1, Point const* p2)
 }
 
 ///////////////// Rect ///////////////////////
-
+// BR = Bottom Right
 Point Rect_BR(Rect const* r) {
-	Point br = { 0, 0};
+	Point br = Point_Add(&(r->TL), &(r->WH));
 	return br;
 }
 
 Point Rect_Center(Rect const* r)
 {
-	Point center = { 0, 0};
+	Point center = { .x = r->x + r->width / 2.f, .y = r->y + r->height / 2.f };
 	return center;
 }
 
 Rect Rect_InitFromPoints(Point const* TL, Point const* BR)
 {
-	Rect result = {  0, 0, 0, 0 };
+	Rect result;
+
+	// copy top-left corner
+	result.TL = *TL;
+
+	// Calculate width and height
+	result.width = BR->x - TL->x;
+	result.height = BR->y - TL->y;
+
 	return result;
 }
 
@@ -59,8 +66,7 @@ bool Rect_IsValid(Rect const* r)
 	return r->width > 0 && r->height > 0;
 }
 
-
-Rect Rect_GuessWhat(Rect const* r1, Rect const* r2)
+Rect Rect_CombineAndBound(Rect const* r1, Rect const* r2)
 {
 	Point TL = Point_MAX(&r1->TL, &r2->TL);
 	
@@ -71,6 +77,7 @@ Rect Rect_GuessWhat(Rect const* r1, Rect const* r2)
 
 	return Rect_InitFromPoints(&TL, &BR);
 }
+
 void Rect_Print(Rect const* r)
 {
 	printf("[r->x=%f, r->y=%f, r->width=%f, height=%f] Valid? %s\n", r->x, r->y, r->width, r->height, Rect_IsValid(r) ? "YES" : "NO");

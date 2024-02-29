@@ -150,7 +150,7 @@ Link* FindCollision(Rect mineRoi, LinkedList otherEntities)
         entityLink = entityLink->next)
     {
         Entity* other = entityLink->value;
-        Rect what = Rect_GuessWhat(&mineRoi, &other->ROI);
+        Rect what = Rect_CombineAndBound(&mineRoi, &other->ROI);
         if (Rect_IsValid(&what))
             return entityLink;
     }
@@ -168,7 +168,7 @@ Link* Entity_HandleCollision(Entity* me, LinkedList otherEntities)
     if (colliding_entity_link)
     {
         Entity* colliding_entity = colliding_entity_link->value;
-        Rect what = Rect_GuessWhat(&nextRoi, &colliding_entity->ROI);
+        Rect what = Rect_CombineAndBound(&nextRoi, &colliding_entity->ROI);
         bool isVerticalCollision = what.height > what.width;
         if (isVerticalCollision)
             me->velocity.x *= -1;

@@ -131,7 +131,7 @@ Now go ahead and :
 
 2. A Geometric Riddle: What does `Rect Rect_GuessWhat(Rect const* r1, Rect const* r2)`  do?  
    After you figure that out, rename `Rect_GuessWhat` to some meaningful name all over the solution! You can do that by
-   “replace all” (Ctrl+Shift+H) or by Refactor-Rename (Ctrl + R , Ctrl + R – just hold the Ctrl and press “R” twice).
+   “replace all” (Ctrl+Shift+H) or by Refactor-Rename (Ctrl + R + R – just hold the Ctrl and press “R” twice).
 
 Step 3: FileUtils
 -----------------

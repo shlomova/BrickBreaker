@@ -51,4 +51,4 @@ Rect Rect_InitFromPoints(Point const * TL, Point const* BR);
 bool Rect_IsValid(Rect const* r);
 
 
-Rect Rect_GuessWhat(Rect const* r1, Rect const* r2);
+Rect Rect_CombineAndBound(Rect const* r1, Rect const* r2);
