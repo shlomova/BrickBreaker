@@ -18,7 +18,7 @@ Download the project template and open the `BrickBreaker solution`.
 (`Rclick ->`) Set `BrickBreaker_Test` project as a `Startup Project`. Run and see all the wonderful unit test failures
 that pop out in the console. Pretty, hu?
 
-### Practice OpenCV:
+### Optional: Practice OpenCV:
 You have the `SnadBox.c` file to learn and practice the most common commands in OpenCV.
 Set the `OpenCV_Playground` project as the `Startup Project`, and now you can run this.
 Look at the code in the file, and play with parameters, etc.
@@ -167,7 +167,7 @@ Again, fill in the blanks in Entity.c till EntityTest_main Pass!
 
 Commit & Push.
 
-At this point, you should be able to set BrickBreakerRunner as a startup project and enjoy the game 😊
+At this point, you should be able to set `BrickBreakerRunner` as a `startup project` and enjoy the game 😊
 
 
 
@@ -180,4 +180,4 @@ it, you can fill in the TODOs if you’d like – not a must.
 
 How do we check collisions?
 
-`Last modified: Thursday, 8 February 2024, 4:46 PM`
+`Last modified: Thursday, 1 march 2024, 14:14`
