@@ -7,27 +7,42 @@
 // hint: if fopen works - file exist.
 bool isFileExists(const char* filepath)
 {
+    if (filepath == NULL) return false;
+
+    FILE* dstFile = fopen(filepath, "r");
+    if (dstFile != NULL) {
+        fclose(dstFile);
+        return true;
+    }
+  
     return false;
 }
 
 char* concatPaths(const char* root, const char* toAppend)
 {
-    // TODO: check if root path ends with \ or / and save it into a variable:
-    bool isRequiredTrailingSlash = false;
+    //if (root == "" || root[0] == '\0') {
+    //    // If root is empty, simply return a copy of 'toAppend'
+    //    return _strdup(toAppend);
+    //}
+    
+    // check if root path ends with \ or / and save it into a variable:
+    bool isRequiredTrailingSlash = root[strlen(root) - 1] != '/' &&
+                                   root[strlen(root) - 1] != '\\';
 
-    // TODO: calculate length of the concatinated path:
+    // calculate length of the concatinated path:
     // hint: output length = strlen + strlen [sometimes, + 1]
-    size_t concatPathLength = 0;
-    if (0 == concatPathLength)
+    size_t concatPathLength = strlen(root) + strlen(toAppend) + isRequiredTrailingSlash;
+    if (concatPathLength == 0)
         return NULL;
 
-    char* concatPath = (char*)malloc(concatPathLength);
+    char* concatPath = (char*) malloc(concatPathLength + 1);
     if (!concatPath)
         return NULL;
 
-    // TODO: use strcpy and strcat to construct the output:
-    // ...
-    //
+    // use strcpy and strcat to construct the output:
+    strcpy(concatPath, root);
+    if (isRequiredTrailingSlash) strcat(concatPath, "/");
+    strcat(concatPath, toAppend);
 
     return concatPath;
 }
