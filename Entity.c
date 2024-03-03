@@ -180,11 +180,27 @@ bool Entity_IsValid(Entity const* entity)
     if (!entity)
         return false;
 
-    return entity->ROI.width > 0
-        && entity->ROI.height > 0;
+    return Rect_IsValid(&entity->ROI);
 }
 
 void Entity_Move(Entity* entity)
 {
-    // TODO
+    if (entity == NULL) return;
+
+    // Update ROI top-left coordinates by adding velocity
+    entity->ROI.x += entity->velocity.x;
+    entity->ROI.y += entity->velocity.y;
+
+    if (entity->animation == NULL || entity->animation->next == NULL) {
+        return;
+    }
+    // Move to the next frame in the animation
+    if (entity->currFrame == NULL || entity->currFrame->next == NULL) {
+        entity->currFrame = entity->animation->next;
+    }
+    else {
+        entity->currFrame = entity->currFrame->next;
+    }
+
+
 }
