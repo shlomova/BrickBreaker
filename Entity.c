@@ -159,6 +159,12 @@ void Entity_Free(Entity* entity)
 
 void Entity_Draw(Entity const* entity, CvMat background, bool isWithTransparency)
 {
+    if (entity == NULL || entity->currFrame == NULL || entity->currFrame->value == NULL)
+    {
+        // Invalid entity or frame, cannot draw
+        return;
+    }
+
     int TL[2]; // Array to hold integer coordinates so do casting
     TL[0] = (int)entity->ROI.TL.x; 
     TL[1] = (int)entity->ROI.TL.y; 
