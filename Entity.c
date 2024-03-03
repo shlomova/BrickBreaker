@@ -140,13 +140,23 @@ Entity* Entity_Clone(const Entity* other)
 
 void freeFrames(LinkedList framesList)
 {
-    // TODO: first free the pointed images, then free the list itself.
+    // first free the pointed images, then free the list itself.
+    for (Link* l = framesList->next; l != NULL; l = l->next) {
+        Mat_Free(l->value);
+    }
+
+    List_Free(framesList);
+
 }
 
-// TODO: Important! implement freeFrames before you implement this:
+// Important! freeFrames before this:
 void Entity_Free(Entity* entity)
 {
-    // TODO: free the animation, then the entity itself.
+    // free the animation, then the entity itself.
+    freeFrames(entity->animation);
+    // entity->currFrame = entity->animation->next
+    //free(entity->currFrame);
+    free(entity);
 }
 
 void Entity_Draw(Entity const* entity, CvMat background, bool isWithTransparency)
