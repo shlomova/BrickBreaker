@@ -60,16 +60,18 @@ Entity* Entity_Create(const char* animationsFolder)
 
     // init entity->currFrame to point to the first link in entity->animation.
     // and handle the case when entity->animation is Empty!
+    entity->currFrame = entity->animation->next;
     if (entity->animation->next != NULL) 
         {
-            entity->currFrame = entity->animation->next;
-
             // init entity->ROI to (0,0,W,H). 
             // and handle the case when entity->animation is Empty!
             float w = (float) Mat_Width(entity->currFrame->value);
             float h = (float) Mat_Height(entity->currFrame->value);
             entity->ROI = (Rect){ .TL = {0,0}, .WH = {w,h} };
         }
+    else {
+        entity->ROI = (Rect){ .TL = {0,0}, .WH = {0,0} };
+    }
     // init entity->velocity to be zero in each direction.
     entity->velocity = (Point){ .coords = {0,0} };
     
@@ -86,14 +88,22 @@ Entity* Entity_CreateVirtual(Rect roi)
     entity->animation = NULL;
     entity->currFrame = NULL;
 
-    // TODO: entity->animation must be a valid (yet empty) list.
-    // ...
+    // entity->animation must be a valid (yet empty) list.
+    entity->animation = List_Create();
+    if (!entity->animation) {
+        free(entity);
+        return NULL;
+    }
     
-    // TODO: what to do with entity->currFrame ?
+    // what to do with entity->currFrame ?
+    // -> currFrame remains NULL since there's no animation.
+     
+    // init entity->ROI , that's what this Entity is made for :)
+    entity->ROI = roi;
 
-    // TODO: init entity->ROI , that's what this Entity is made for :)
-    
-    // TODO: init entity->velocity to be zero.
+
+    // init entity->velocity to be zero.
+    entity->velocity = (Point){ .coords = {0,0} };
 
     return entity;
 }

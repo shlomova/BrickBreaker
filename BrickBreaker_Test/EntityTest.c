@@ -263,7 +263,7 @@ int EntityTest_main()
 {
 	INIT_TESTS();
 	RUN_TEST(Entity_Create_test);
-	//RUN_TEST(Entity_CreateVirtual_test);
+	RUN_TEST(Entity_CreateVirtual_test);
 	//RUN_TEST(Entity_Clone_test);
 	//RUN_TEST(Entity_Draw_WhenNoTransparancy_test);
 	//RUN_TEST(Entity_Draw_WhenWithTransparancy_test);
