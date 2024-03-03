@@ -265,8 +265,8 @@ int EntityTest_main()
 	RUN_TEST(Entity_Create_test);
 	RUN_TEST(Entity_CreateVirtual_test);
 	RUN_TEST(Entity_Clone_test);
-	//RUN_TEST(Entity_Draw_WhenNoTransparancy_test);
-	//RUN_TEST(Entity_Draw_WhenWithTransparancy_test);
+	RUN_TEST(Entity_Draw_WhenNoTransparancy_test);
+	RUN_TEST(Entity_Draw_WhenWithTransparancy_test);
 	//RUN_TEST(Entity_IsValid_WhenNULL_test);
 	//RUN_TEST(Entity_IsValid_When_ROI_invalid_test);
 	//RUN_TEST(Entity_IsValid_WhenActuallyValid_test);

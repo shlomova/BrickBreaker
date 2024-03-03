@@ -154,14 +154,19 @@ void Entity_Free(Entity* entity)
 {
     // free the animation, then the entity itself.
     freeFrames(entity->animation);
-    // entity->currFrame = entity->animation->next
-    //free(entity->currFrame);
     free(entity);
 }
 
 void Entity_Draw(Entity const* entity, CvMat background, bool isWithTransparency)
 {
-    // TODO
+    int TL[2]; // Array to hold integer coordinates so do casting
+    TL[0] = (int)entity->ROI.TL.x; 
+    TL[1] = (int)entity->ROI.TL.y; 
+
+    if (isWithTransparency == false)
+        Mat_CopyTo(entity->currFrame->value, background, TL);
+    else
+        Mat_CopyTo_WithTransparency(entity->currFrame->value, background,TL);
 }
 
 bool Entity_IsValid(Entity const* entity)
