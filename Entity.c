@@ -37,7 +37,6 @@ void fillInFrames(LinkedList framesList, const char* animationFolder)
     }
 }
 
-
 Entity* Entity_Create(const char* animationsFolder)
 {
     Entity* entity = (Entity*)malloc(sizeof(Entity));
