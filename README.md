@@ -163,7 +163,9 @@ they shouldn’t dig into implementation to understand what’s going on!
 **Note:** since linked list is represented by it’s anchor,  
 we `typedef`ed `LinkedList` to be a synonym to `Link *`.
 
-Again, fill in the blanks in Entity.c till EntityTest_main Pass!
+Again, fill in the blanks in Entity.c till `EntityTest_main` Pass!
+
+**Tip!:** Read `core.h` file and find out the usefull functions.
 
 Commit & Push.
 

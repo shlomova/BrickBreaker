@@ -6,43 +6,72 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-/// <summary>
-/// Fills in the framesList with images 0.png, 1.png, ... from the animationFolder.
-/// use:
-/// countAnimationFrames, getFramePath, Mat_Read, List_Insert
-/// </summary>
-/// <param name="framesList">List to be filled</param>
-/// <param name="animationFolder">Folder with images 0.png, 1.png, ... </param>
+
 void fillInFrames(LinkedList framesList, const char* animationFolder)
 {
-    // TODO ...
+    size_t count_frames = countAnimationFrames(animationFolder);
+    if (count_frames == 0) return;
+
+    for (size_t frameIdx = 1; frameIdx <= count_frames; frameIdx++) {
+        char* filePath = getFramePath(animationFolder, frameIdx);
+        if (!filePath) {
+            printf("Error: Unable to get file path for frame %zu\n", frameIdx);
+            continue; 
+        }
+
+        void* frameData = Mat_Read(filePath); // MAT_Free
+        if (!frameData) {
+            printf("Error: Failed to read frame %zu\n", frameIdx);
+            free(filePath);
+            continue; 
+        }
+
+        List_ErrorCodes result = List_Insert(framesList, frameData);
+        if (result != SUCCESS) {
+            printf("Error: Failed to insert frame %zu into the list\n", frameIdx);
+            free(filePath); 
+            break;
+        }
+
+        free(filePath); 
+    }
 }
+
 
 Entity* Entity_Create(const char* animationsFolder)
 {
     Entity* entity = (Entity*)malloc(sizeof(Entity));
     if (!entity)
         return NULL;
-    
+
     // init pointers to NULL for marking they weren't yet set:
     entity->animation = NULL;
     entity->currFrame = NULL;
 
 
-    // TODO: Create and fill in entity->animation
-    // entity->animation = ... 
-    // ...
+    // Create and fill in entity->animation
+    entity->animation = List_Create();
+    if (!entity->animation) {
+        free(entity);
+        return NULL;
+    }
 
-    // TODO: init entity->currFrame to point to the first link in entity->animation.
-    // Remember to handle the case when entity->animation is Empty!
-    // ...
+    fillInFrames(entity->animation, animationsFolder);
 
-    // TODO: init entity->ROI to (0,0,W,H). 
-    // Remember to handle the case when entity->animation is Empty!
-    // ...
+    // init entity->currFrame to point to the first link in entity->animation.
+    // and handle the case when entity->animation is Empty!
+    if (entity->animation->next != NULL) 
+        {
+            entity->currFrame = entity->animation->next;
 
-    // TODO: init entity->velocity to be zero in each direction.
-    // ...
+            // init entity->ROI to (0,0,W,H). 
+            // and handle the case when entity->animation is Empty!
+            float w = (float) Mat_Width(entity->currFrame->value);
+            float h = (float) Mat_Height(entity->currFrame->value);
+            entity->ROI = (Rect){ .TL = {0,0}, .WH = {w,h} };
+        }
+    // init entity->velocity to be zero in each direction.
+    entity->velocity = (Point){ .coords = {0,0} };
     
     return entity;
 }
@@ -100,10 +129,6 @@ Entity* Entity_Clone(const Entity* other)
     return entity;
 }
 
-/// <summary>
-/// Free a list of frames - where every link points to an image.
-/// </summary>
-/// <param name="framesList"></param>
 void freeFrames(LinkedList framesList)
 {
     // TODO: first free the pointed images, then free the list itself.

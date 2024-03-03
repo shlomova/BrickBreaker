@@ -29,8 +29,19 @@ typedef struct {
 }Entity;
 
 /// <summary>
+/// Fills in the framesList with images 1.png, 2.png, ... from the animationFolder.
+/// use:
+/// countAnimationFrames and getFramePath in FileUtils.h, 
+/// Mat_Read in core.c, 
+/// List_Insert in LinkedList.h
+/// </summary>
+/// <param name="framesList">List to be filled</param>
+/// <param name="animationFolder">Folder with images 0.png, 1.png, ... </param>
+void fillInFrames(LinkedList framesList, const char* animationFolder);
+
+/// <summary>
 /// Allocates and initializes an Entity with animation taken from
-/// animationsFolder (with images 0.png, 1.png, ...).
+/// animationsFolder (with images 1.png, 2.png, ...).
 /// The created Entity's ROI top left corner is placed at x=y=0
 /// In case where animationsFolder does not contain images returns an
 /// Entity with animation of length zero.
