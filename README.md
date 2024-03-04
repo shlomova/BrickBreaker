@@ -149,8 +149,6 @@ go ahead and implement the functions.
 When all `FileUtilsTest_main` unit tests pass, commit & push!
 
 
-
-
 Step 4: Entity
 --------------
 
@@ -171,7 +169,7 @@ Commit & Push.
 
 At this point, you should be able to set `BrickBreakerRunner` as a `startup project` and enjoy the game 😊
 
-
+If there is a problem, pay attention to the includes.
 
 
 Step 5: Game

@@ -1,7 +1,3 @@
-#include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
-
 #include "FileUtils.h"
 
 // hint: if fopen works - file exist.
@@ -19,12 +15,7 @@ bool isFileExists(const char* filepath)
 }
 
 char* concatPaths(const char* root, const char* toAppend)
-{
-    //if (root == "" || root[0] == '\0') {
-    //    // If root is empty, simply return a copy of 'toAppend'
-    //    return _strdup(toAppend);
-    //}
-    
+{    
     // check if root path ends with \ or / and save it into a variable:
     bool isRequiredTrailingSlash = root[strlen(root) - 1] != '/' &&
                                    root[strlen(root) - 1] != '\\';

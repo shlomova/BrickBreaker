@@ -3,8 +3,8 @@
 LinkedList LoadBrickTypes(const char* animationsRootFolder)
 {
     LinkedList brickTypes = List_Create();
-
-    char* bricksRootFolder = concatPaths(animationsRootFolder, "Bricks");
+    const char* a = "Bricks";
+    char* bricksRootFolder = concatPaths(animationsRootFolder, a);
     int brickIdx = 1;
     bool stillValid = true;
     char brickIdxStr[30] = { 0 };

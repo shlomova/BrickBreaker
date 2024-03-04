@@ -2,6 +2,11 @@
 #include "LinkedList.h"
 #include "core.h"
 #include "Geometry.h"
+#include "FileUtils.h"
+
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 typedef struct {
 	/// <summary>

@@ -1,5 +1,9 @@
 #pragma once
 #include <stdbool.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+
 /// <summary>
 /// returns true if file exists, otherwise false.
 /// </summary>

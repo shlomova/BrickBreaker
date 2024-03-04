@@ -1,11 +1,4 @@
 #include "Entity.h"
-#include "core.h"
-#include "FileUtils.h"
-
-#include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
-
 
 void fillInFrames(LinkedList framesList, const char* animationFolder)
 {
